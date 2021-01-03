@@ -81,12 +81,12 @@ def update_plot(frame_number, zarray, plot):
     plot[0] = ax.plot_surface(x, y, zarray[:,:,frame_number], cmap = "magma", clim = (-1.2,1.2))
 
 fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-plot = [ax.plot_surface(x, y, zarray[:,:,0], color='0.75', rstride=1, cstride=1)]
+ax = fig.add_subplot(111, projection = "3d")
+plot = [ax.plot_surface(x, y, zarray[:,:,0], color = "0.75", rstride = 1, cstride = 1)]
 ax.set_zlim(0,7)
 ax.set_xlim(0, Lx)
 ax.set_ylim(0, Ly)
-ani = anim.FuncAnimation(fig, update_plot, frn, fargs=(zarray, plot), interval=1000/fps)
+ani = anim.FuncAnimation(fig, update_plot, frn, fargs = (zarray, plot), interval = 1000/fps)
 
 plt.show()
 
@@ -95,3 +95,16 @@ plt.show()
 
 # title = "title"
 # ani.save(title + '.gif', writer = 'imagemagick', fps = fps)
+
+
+# Plot time coefficients
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection = '3d')
+nn, mm = np.meshgrid(np.arange(0,n_max), np.arange(0,m_max))
+ax.plot_surface(nn, mm, A[:,:])
+ax.set_title("Time coefficients")
+ax.set_xlabel("n")
+ax.set_ylabel("m")
+
+plt.show()
