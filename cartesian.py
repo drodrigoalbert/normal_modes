@@ -69,8 +69,6 @@ for n,m in zip(nvec.flatten(),mvec.flatten()):
     A[n,m] = init_cond_pos[0]/(norm_x*norm_y)
     B[n,m] = (1/(c*k(n,m)))*init_cond_vel[0]/(norm_x*norm_y)
 
-print(A, B)
-
 for t in range(frn):
     for n,m in zip(nvec.flatten(),mvec.flatten()):
         zarray[:,:,t] += f(n,m,x,y,A[n,m]*np.cos(c*k(n,m)*t) + B[n,m]*np.sin(c*k(n,m)*t))
