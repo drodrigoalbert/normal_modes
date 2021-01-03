@@ -35,7 +35,7 @@ k_x = lambda n: np.pi*n/Lx
 k_y = lambda m: np.pi*m/Ly
 eigenf_x = lambda n,x: np.sin(k_x(n)*x)
 eigenf_y = lambda m,y: np.sin(k_y(m)*y)
-f = lambda n,m,x,y,temp: 2/np.sqrt(Lx*Ly)*temp*eigenf_x(n,x)*eigenf_y(m,y)
+f = lambda n,m,x,y,temp: temp*eigenf_x(n,x)*eigenf_y(m,y)
 k = lambda n,m: np.sqrt(k_x(n)**2 + k_y(m)**2)
 
 n_max, m_max = 10, 10
@@ -78,12 +78,12 @@ for t in range(frn):
     
 def update_plot(frame_number, zarray, plot):
     plot[0].remove()
-    plot[0] = ax.plot_surface(x, y, zarray[:,:,frame_number], cmap = "magma", clim = (-0.3,0.3))
+    plot[0] = ax.plot_surface(x, y, zarray[:,:,frame_number], cmap = "magma", clim = (-1.2,1.2))
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 plot = [ax.plot_surface(x, y, zarray[:,:,0], color='0.75', rstride=1, cstride=1)]
-ax.set_zlim(0,1.5)
+ax.set_zlim(0,7)
 ax.set_xlim(0, Lx)
 ax.set_ylim(0, Ly)
 ani = anim.FuncAnimation(fig, update_plot, frn, fargs=(zarray, plot), interval=1000/fps)
